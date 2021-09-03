@@ -1,10 +1,13 @@
 <template>
   <div class="container">
-    <h1 class="text-center">CARRITO</h1>
-    {{ trolley }}
+    <h1 class="text-center">Tienda</h1>
+
     <hr />
     <div class="row">
       <card-component v-for="item of products" :key="item.id" :product="item" />
+    </div>
+    <div class="row">
+      <trolley-component :trolleys="trolleys" />
     </div>
   </div>
 </template>
@@ -13,11 +16,13 @@
 import { useStore } from "vuex";
 import { computed, onMounted } from "vue";
 import CardComponent from "@/components/CardComponent.vue";
+import TrolleyComponent from "./components/TrolleyComponent.vue";
 
 export default {
   name: "App",
   components: {
     CardComponent,
+    TrolleyComponent,
   },
   setup() {
     const store = useStore();
@@ -25,9 +30,9 @@ export default {
       store.dispatch("fetchData");
     });
     const products = computed(() => store.state.products);
-    const trolley = computed(() => store.state.trolley);
+    const trolleys = computed(() => store.state.trolley);
 
-    return { products, trolley };
+    return { products, trolleys };
   },
 };
 </script>
