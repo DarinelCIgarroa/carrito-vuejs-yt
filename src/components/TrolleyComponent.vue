@@ -15,8 +15,9 @@
         <item-component v-for="item in trolleys" :key="item.id" :product="item"/>
     </tbody>
     <tfoot>
-        <tr>
-            <td>lalsdlasd</td>
+        <tr id="footer-carrito">
+            <th scope="row" colspan="5" v-if="Object.keys(trolleys).length === 0">Carrito vacío -- Compre productos</th>
+            <footer-component v-else />
         </tr>
     </tfoot>
   </table>
@@ -24,10 +25,12 @@
 
 <script>
 import itemComponent from './itemComponent.vue';
+import FooterComponent from './FooterComponent.vue';
 import { useStore} from 'vuex';
 import {computed} from 'vue'
+
 export default {
-  components: { itemComponent },
+  components: { itemComponent, FooterComponent },
   name: "TrolleyComponent",
   setup(){
     const store = useStore();

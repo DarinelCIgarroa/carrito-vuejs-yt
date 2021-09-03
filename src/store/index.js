@@ -11,6 +11,9 @@ export default createStore({
     },
     setTrolley(state,payload){
       state.trolley[payload.id] = payload
+    },
+    cleanTrolley(state){
+      state.trolley = {}
     }
   },
   actions: {
@@ -26,6 +29,14 @@ export default createStore({
     addTrolley({commit,state},producto){
       state.trolley.hasOwnProperty(producto.id)  ? producto.cantidad = state.trolley[producto.id].cantidad + 1 : producto.cantidad = 1
       commit('setTrolley',producto) 
+    }
+  },
+  getters:{
+    TotalQuantity(state){
+      return Object.values(state.trolley).reduce( (acc, {cantidad} ) => acc + cantidad, 0)
+    },
+    TotalPrice(state){
+      return Object.values(state.trolley).reduce( (acc, {cantidad, precio} ) => acc + cantidad * precio , 0)
     }
   },
   modules: {
