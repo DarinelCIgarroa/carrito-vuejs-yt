@@ -7,7 +7,7 @@
       <card-component v-for="item of products" :key="item.id" :product="item" />
     </div>
     <div class="row">
-      <trolley-component :trolleys="trolleys" />
+      <trolley-component/>
     </div>
   </div>
 </template>
@@ -30,9 +30,7 @@ export default {
       store.dispatch("fetchData");
     });
     const products = computed(() => store.state.products);
-    const trolleys = computed(() => store.state.trolley);
-
-    return { products, trolleys };
+    return { products };
   },
 };
 </script>

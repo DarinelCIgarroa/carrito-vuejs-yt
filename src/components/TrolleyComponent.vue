@@ -7,28 +7,32 @@
         <th scope="col">Nombre</th>
         <th scope="col">Precio</th>
         <th scope="col">Cantidad</th>
+        <th scope="col">Total</th>
+        <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in trolleys" :key="item.id">
-        <th scope="row">{{ item.id }}</th>
-        <td>{{ item.title }}</td>
-        <td>{{ item.precio }}</td>
-        <td>{{ item.cantidad }}</td>
-      </tr>
+        <item-component v-for="item in trolleys" :key="item.id" :product="item"/>
     </tbody>
-    
+    <tfoot>
+        <tr>
+            <td>lalsdlasd</td>
+        </tr>
+    </tfoot>
   </table>
 </template>
 
 <script>
+import itemComponent from './itemComponent.vue';
+import { useStore} from 'vuex';
+import {computed} from 'vue'
 export default {
+  components: { itemComponent },
   name: "TrolleyComponent",
-  props: {
-    trolleys: {
-      type: Object,
-      Required: true,
-    },
-  },
+  setup(){
+    const store = useStore();
+    const trolleys = computed(() => store.state.trolley);
+    return {trolleys}
+  }
 };
 </script>

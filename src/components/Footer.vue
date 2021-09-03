@@ -1,0 +1,16 @@
+<template id="template-footer">
+  <th scope="row" colspan="2">Total productos</th>
+  <td>10</td>
+  <td>
+    <button class="btn btn-danger btn-sm" id="vaciar-carrito">
+      vaciar todo
+    </button>
+  </td>
+  <td class="font-weight-bold">$ <span>5000</span></td>
+</template>
+
+<script>
+export default {
+    name: 'FooterComponent'
+};
+</script>
