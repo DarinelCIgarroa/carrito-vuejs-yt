@@ -14,6 +14,15 @@ export default createStore({
     },
     cleanTrolley(state){
       state.trolley = {}
+    },
+    augmentedProduct(state,payload){
+      state.trolley[payload].cantidad = state.trolley[payload].cantidad + 1
+    },
+    decreaseProduct(state,payload){
+      state.trolley[payload].cantidad = state.trolley[payload].cantidad - 1
+      if(state.trolley[payload].cantidad === 0 ){
+        delete state.trolley[payload]
+      }
     }
   },
   actions: {
@@ -37,7 +46,7 @@ export default createStore({
     },
     TotalPrice(state){
       return Object.values(state.trolley).reduce( (acc, {cantidad, precio} ) => acc + cantidad * precio , 0)
-    }
+    },
   },
   modules: {
 
