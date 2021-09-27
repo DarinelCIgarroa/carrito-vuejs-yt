@@ -36,6 +36,7 @@ export default createStore({
       }
     },
     addTrolley({commit,state},producto){
+      console.log('addacar',producto.id)
       state.trolley.hasOwnProperty(producto.id)  ? producto.cantidad = state.trolley[producto.id].cantidad + 1 : producto.cantidad = 1
       commit('setTrolley',producto) 
     }

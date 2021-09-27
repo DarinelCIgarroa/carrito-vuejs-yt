@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <h1 class="text-center">Tienda</h1>
-
+    <pre>{{ products }}</pre>
     <hr />
     <div class="row">
       <card-component v-for="item of products" :key="item.id" :product="item" />
     </div>
     <div class="row">
-      <trolley-component/>
+      <trolley-component />
     </div>
   </div>
 </template>
